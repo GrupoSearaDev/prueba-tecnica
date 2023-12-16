@@ -47,8 +47,8 @@ class User extends Migration
                 'null' => false,
             ],
             'type' => [
-                'type'=> 'ENUM("Administrador", "Basico")',
-                'default'=> 'Basico',
+                'type'=>"VARCHAR",// 'ENUM("Administrador", "Basico")',
+                'constraint'=> '255',
                 'null' => false
             ],
             'updated_at' => [
@@ -67,11 +67,11 @@ class User extends Migration
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable('user');
+        $this->forge->createTable('users');
     }
 
     public function down()
     {
-        $this->forge->dropTable('user');
+        $this->forge->dropTable('users');
     }
 }

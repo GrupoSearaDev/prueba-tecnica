@@ -26,6 +26,7 @@ class AdminAccessFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
+        
         $authorization = $request->getServer('HTTP_AUTHORIZATION');
 
         try {
@@ -34,6 +35,11 @@ class AdminAccessFilter implements FilterInterface
             $user = getUserFromToken($encodedToken);
             if($user['type']== 'Administrador'){
                 return $request;
+            }else if($request->getMethod(true) == 'POST' && !in_array('create-user',explode('/',$_SERVER['PHP_SELF']))){
+                $requestData = json_decode($request->getBody(), true);
+                if($user['id'] == $requestData['user_id']){
+                    return $request;
+                }
             }
             return Services::response()->setJSON([
                 'error'=>'Permission denied'

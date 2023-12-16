@@ -48,7 +48,7 @@ class Validation extends BaseConfig
         'name' => 'required|max_length[150]',
         'lastname' => 'required|max_length[150]',
         'phone' => 'required|numeric|exact_length[10]',
-        'email' => 'required|max_length[100]|valid_email|is_unique[user.email]',
+        'email' => 'required|max_length[100]|valid_email|is_unique[users.email]',
         'photo' => 'required|max_length[200]|valid_url',
         'password' => 'required|max_length[255]',
         'type'=> 'required|in_list[Administrador,Basico]',
@@ -59,7 +59,7 @@ class Validation extends BaseConfig
         'name' => 'if_exist|max_length[150]',
         'lastname' => 'if_exist|max_length[150]',
         'phone' => 'if_exist|numeric|exact_length[10]',
-        'email' => 'if_exist|max_length[100]|valid_email|is_unique[user.email,email,$email]',
+        'email' => 'if_exist|max_length[100]|valid_email|is_unique[users.email,email,$email]',
         'photo' => 'if_exist|max_length[200]|valid_url',
         'password' => 'if_exist|max_length[255]',
         'type'=> 'if_exist|in_list[Administrador,Basico]',
@@ -82,5 +82,16 @@ class Validation extends BaseConfig
                 'validateUser'=>'Invalid login credentials provided'
             ]
         ]
+    ];
+
+    public array $rulesToCreateTask = [
+        'title' => 'required|max_length[150]',
+        'description' => 'required',
+        'status' => 'required|in_list[Pendiente,En_Proceso,Completado]',
+        'user_id' => 'required'
+    ];
+
+    public array $rulesToUpdateTask = [
+        'status' => 'required|in_list[Pendiente,En_Proceso,Completado]',
     ];
 }

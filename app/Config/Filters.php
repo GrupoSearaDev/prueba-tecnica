@@ -78,12 +78,15 @@ class Filters extends BaseConfig
                 'get-users',
                 'update-user/*',
                 'delete-user/*',
+                'list-tasks',
+                'task-create'
             ]
         ],
         'adminaccess'=>[
             'before'=>[
                 'create-user',
-                'delete-user/*'
+                'delete-user/*',
+                'task-create'
             ]
         ],
     ];

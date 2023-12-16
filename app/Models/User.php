@@ -1,22 +1,23 @@
 <?php
 namespace App\Models;
 
-use CodeIgniter\Model;
+//use CodeIgniter\Model;
+use App\Models\CustomModel;
 
-class User extends Model{
+class User extends CustomModel{
 
-    protected $table = 'user';
-    protected $primaryKey = 'id';
-    protected $useAutoIncrement = true;
-    protected $useSoftDeletes = true;
+    protected $table = 'users';
+    //protected $primaryKey = 'id';
+    //protected $useAutoIncrement = true;
+    //protected $useSoftDeletes = true;
 
     protected $allowedFields = ['name','lastname', 'phone', 'email', 'photo', 'password', 'type', 'last_login'];
 
-    protected $useTimestamps = true;
-    protected $dateFormat = 'datetime';
-    protected $createdField = 'created_at';
-    protected $updatedField = 'updated_at';
-    protected $deletedField = 'deleted_at';
+    //protected $useTimestamps = true;
+    //protected $dateFormat = 'datetime';
+    //protected $createdField = 'created_at';
+    //protected $updatedField = 'updated_at';
+    //protected $deletedField = 'deleted_at';
 
 
     protected $beforeInsert = ['before'];
